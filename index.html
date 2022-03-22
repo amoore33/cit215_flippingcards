@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flipping Cards</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="flashcards-app">
+    <input type="text" v-model="uquestion" name="uquestion" id="uquestion">
+    <input type="text" v-model="uanswer" name="uanswer" id="uanswer"><br/>
+    <input type="radio" v-model="ucategory" name="ucategory" id="cat-history" value="history">
+    <label for="cat-history">History</label>
+    <input type="radio" v-model="ucategory" name="ucategory" id="cat-science" value="science">
+    <label for="cat-science">Science</label>
+    <input type="radio" v-model="ucategory" name="ucategory" id="cat-math" value="math">
+    <label for="cat-math">Math</label><br/>
+    <button @click="addCard">Submit</button>
+
+    <div class="card-container">
+        <div v-for="card in cards" class="card" @click="card.flipped=!card.flipped">
+            <div v-bind:class="['top', card.category]" ></div>
+            <div v-bind:class="['side1', card.flipped?'hide':'']">
+                <h1>{{card.question}}</h1>
+            </div>
+            <div v-bind:class="['side2', card.flipped?'':'hide']">
+                <h1>{{card.answer}}</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
